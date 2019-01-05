@@ -13,6 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "xd75.h"
 
 // Layer shorthand
@@ -22,25 +23,25 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
- * .--------------------------------------------------------------------------------------------------------------------------------------.
- * | ESC    | 1      | 2      | 3      | 4      | 5      | -      | `      | =      | 6      | 7      | 8      | 9      | 0      | BACKSP |
- * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------|
- * | TAB    | Q      | W      | E      | R      | T      | [      | \      | ]      | Y      | U      | I      | O      | P      | '      |
- * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------|
- * | CAP LK | A      | S      | D      | F      | G      | HOME   | DEL    | PG UP  | H      | J      | K      | L      | ;      | ENTER  |
- * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
- * | LSHIFT | Z      | X      | C      | V      | B      | END    | UP     | PG DN  | N      | M      | ,      | .      | /      | RSHIFT |
- * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
- * | LCTRL  | LGUI   | LALT   | FN     | SPACE  | SPACE  | LEFT   | DOWN   | RIGHT  | SPACE  | SPACE  | FN     | RALT   | RGUI   | RCTRL  |
- * '--------------------------------------------------------------------------------------------------------------------------------------'
+ * .---------------------------------------------------------------------------------------------------------------------------------------------------.
+ * | ESC      | 1      | 2      | 3      | 4      | 5          | -      | `      | =      | 6          | 7      | 8      | 9      | 0      | BACKSP    |
+ * |----------+--------+--------+--------+--------+------------+--------+--------+--------+------------+--------+--------+--------+--------------------|
+ * | TAB      | Q      | W      | E      | R      | T          | [      | \      | ]      | Y          | U      | I      | O      | P      | SHT+TAB   |
+ * |----------+--------+--------+--------+--------+------------+--------+--------+--------+------------+--------+--------+-----------------+-----------|
+ * | CTL/ESC  | A      | S      | D      | F      | G          | HOME   | DEL    | END    | H          | J      | K      | L      | ;      | CTL/ENTER |
+ * |----------+--------+--------+--------+--------+------------+--------+--------+--------+------------+--------+--------------------------+-----------|
+ * | LSHIFT   | Z      | X      | C      | V      | B          | '      | UP     | '      | N          | M      | ,      | .      | /      | RSHIFT    |
+ * |----------+--------+--------+--------+--------+------------+--------+--------+--------+------------+--------+--------+--------+--------|-----------|
+ * | LCTRL    | LALT   | LGUI   | FN     | FN     | SFT/SPACE  | LEFT   | DOWN   | RIGHT  | SFT/SPACE  | FN     | FN     | RGUI   | RALT   | RCTRL     |
+ * '---------------------------------------------------------------------------------------------------------------------------------------------------'
  */
 
  [_QW] = { /* QWERTY */
-  { KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS, KC_GRV,  KC_EQL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC  },
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_BSLS, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT  },
-  { KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_HOME, KC_DEL,  KC_PGUP, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT   },
-  { KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_END,  KC_UP,   KC_PGDN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT  },
-  { KC_LCTL, KC_LGUI, KC_LALT, MO(_FN), KC_SPC,  KC_SPC,  KC_LEFT, KC_DOWN, KC_RGHT, KC_SPC,  KC_SPC,  MO(_FN), KC_RALT, KC_RGUI, KC_RCTL  },
+  { KC_ESC,        KC_1,    KC_2,    KC_3,    KC_4,     KC_5,           KC_MINS, KC_GRV,  KC_EQL,  KC_6,           KC_7,     KC_8,    KC_9,    KC_0,    KC_BSPC       },
+  { KC_TAB,        KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,           KC_LBRC, KC_BSLS, KC_RBRC, KC_Y,           KC_U,     KC_I,    KC_O,    KC_P,    S(KC_TAB)     },
+  { CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,     KC_G,           KC_HOME, KC_DEL,  KC_END,  KC_H,           KC_J,     KC_K,    KC_L,    KC_SCLN, CTL_T(KC_ENT) },
+  { KC_LSFT      , KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,           KC_QUOT, KC_UP,   KC_QUOT, KC_N,           KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT       },
+  { KC_LCTL      , KC_LALT, KC_LGUI, MO(_FN), MO(_FN),  SFT_T(KC_SPC),  KC_LEFT, KC_DOWN, KC_RGHT, SFT_T(KC_SPC),  MO(_FN),  MO(_FN), KC_RGUI, KC_RALT, KC_RCTL       },
  },
 
 /* FUNCTION
@@ -86,4 +87,35 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         break;
       }
     return MACRO_NONE;
+};
+
+bool MOD_DOWN = false;
+void matrix_scan_user(void) {
+    if(MOD_DOWN) {
+        rgblight_setrgb(255, 0, 0);
+    }
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_LGUI:
+    case KC_RGUI:
+    case KC_ESC:
+    case KC_BSPC:
+    case CTL_T(KC_ESC):
+    case CTL_T(KC_ENT):
+    case KC_LSFT:
+    case KC_RSFT:
+    case KC_LCTL:
+    case KC_RCTL:
+    case KC_RALT:
+    case KC_LALT:
+    case SFT_T(KC_SPC):
+      if (record->event.pressed) {
+        MOD_DOWN = true;
+      } else {
+        MOD_DOWN = false;
+      }
+  }
+  return true;
 };
