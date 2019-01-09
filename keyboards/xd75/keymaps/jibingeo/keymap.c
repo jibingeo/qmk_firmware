@@ -75,11 +75,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  
  [_FN] = { /* FUNCTION */
-  { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12   },
-  { _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______  },
-  { _______, _______, KC_GRV,  KC_PIPE, KC_LCBR, KC_RCBR, KC_UNDS, _______, KC_PLUS, KC_LPRN, KC_RPRN, KC_DQUO, KC_TILD, _______, _______  },
-  { _______, _______, _______, KC_BSLS, KC_LBRC, KC_RBRC, KC_MINS, _______, KC_EQL,  KC_LABK, KC_RABK, KC_QUOT, _______, _______, _______  },
-  { _______, _______, RGB_TOG, MO(_FN), RGB_RMOD,RGB_MOD, _______, _______, _______, _______, _______, MO(_FN), _______, _______, RESET    },
+  { KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12   },
+  { _______ , _______, _______, KC_GRV,  KC_LPRN, KC_RPRN, _______, _______, _______, KC_MINS, KC_PLUS, KC_BSLS, _______, _______, _______  },
+  { _______ , _______, _______, KC_TILD, KC_LCBR, KC_RCBR, _______, _______, _______, KC_DQUO, KC_QUOT, KC_PIPE, _______, _______, _______  },
+  { _______ , _______, _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______, KC_UNDS, KC_EQL,  _______, _______, _______, _______  },
+  { RGB_RMOD, RGB_MOD, RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET    },
  },
 
 
