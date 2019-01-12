@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QW] = { /* QWERTY */
   { KC_ESC,        KC_1,    KC_2,    KC_3,               KC_4,           KC_5,           KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_6,           KC_7,              KC_8,                KC_9,    KC_0,    KC_BSPC       },
   { KC_TAB,        KC_Q,    KC_W,    KC_E,               KC_R,           KC_T,           KC_GRV,   KC_MPLY,  KC_BSLS,  KC_Y,           KC_U,              KC_I,                KC_O,    KC_P,    KC_BSLS       },
-  { CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,               LGUI_T(KC_F),   KC_G,           KC_LBRC,  KC_MINS,  KC_RBRC,  KC_H,           LGUI_T(KC_J),      KC_K,                KC_L,    KC_SCLN, CTL_T(KC_ENT) },
+  { CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,               KC_F,           KC_G,           KC_LBRC,  KC_MINS,  KC_RBRC,  KC_H,           KC_J,              KC_K,                KC_L,    KC_SCLN, CTL_T(KC_ENT) },
   { KC_LSFT,       KC_Z,    KC_X,    KC_C,               KC_V,           KC_B,           KC_QUOT,  KC_UP,    KC_EQL,   KC_N,           KC_M,              KC_COMM,             KC_DOT,  KC_SLSH, KC_RSFT       },
   { KC_LCTL,       KC_LALT, KC_LGUI, LT(_TMUX, KC_LEFT), LT(_FN, KC_UP), SFT_T(KC_SPC),  KC_LEFT,  KC_DOWN,  KC_RGHT,  SFT_T(KC_SPC),  LT(_FN, KC_DOWN),  LT(_TMUX, KC_RIGHT), KC_RGUI, KC_RALT, KC_RCTL       },
  },
