@@ -17,9 +17,23 @@
 #include "xd75.h"
 
 // Layer shorthand
-#define _QW 0
-#define _FN 1
-#define _TMUX 2
+#define L0 0 // Qwerty
+#define L1 1 // Function
+#define L2 2 // Tmux
+
+#define GUI_DOWN GUI_T(KC_DOWN)
+#define SFT_SPC SFT_T(KC_SPC)
+#define GUI_SPC GUI_T(KC_SPC)
+#define GUI_UP GUI_T(KC_UP)
+
+#define RSFT_UP RSFT_T(KC_UP)
+#define RCTL_DOWN RCTL_T(KC_DOWN)
+#define LSFT_RIGHT LSFT_T(KC_RIGHT)
+#define LCTL_LEFT LCTL_T(KC_LEFT)
+
+#define L1_SPC LT(L1, KC_SPC)
+#define L2_LEFT LT(L2, KC_LEFT)
+#define L2_RIGHT LT(L2, KC_RIGHT)
 
 
 #define TX_PRFX SS_LCTRL("b")
@@ -39,24 +53,24 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
- [_QW] = { /* QWERTY */
-  { KC_ESC,        KC_1,    KC_2,    KC_3,               KC_4,           KC_5,           KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_6,           KC_7,              KC_8,                KC_9,    KC_0,    KC_BSPC       },
-  { KC_TAB,        KC_Q,    KC_W,    KC_E,               KC_R,           KC_T,           KC_GRV,   KC_MPLY,  KC_BSLS,  KC_Y,           KC_U,              KC_I,                KC_O,    KC_P,    KC_BSLS       },
-  { CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,               KC_F,           KC_G,           KC_LBRC,  KC_MINS,  KC_RBRC,  KC_H,           KC_J,              KC_K,                KC_L,    KC_SCLN, CTL_T(KC_ENT) },
-  { KC_LSFT,       KC_Z,    KC_X,    KC_C,               KC_V,           KC_B,           KC_QUOT,  KC_UP,    KC_EQL,   KC_N,           KC_M,              KC_COMM,             KC_DOT,  KC_SLSH, KC_RSFT       },
-  { KC_LCTL,       KC_LALT, KC_LGUI, LT(_TMUX, KC_LEFT), LT(_FN, KC_UP), SFT_T(KC_SPC),  KC_LEFT,  KC_DOWN,  KC_RGHT,  SFT_T(KC_SPC),  LT(_FN, KC_DOWN),  LT(_TMUX, KC_RIGHT), KC_RGUI, KC_RALT, KC_RCTL       },
+ [L0] = { /* QWERTY */
+  { KC_GRV,     KC_1,    KC_2,    KC_3,    KC_4,   KC_5,    KC_MUTE, KC_VOLD, KC_VOLU, KC_6,   KC_7,     KC_8,     KC_9,    KC_0,    KC_BSPC   },
+  { KC_TAB,     KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    KC_GRV,  KC_MPLY, KC_BSLS, KC_Y,   KC_U,     KC_I,     KC_O,    KC_P,    KC_BSLS   },
+  { KC_ESC,     KC_A,    KC_S,    KC_D,    KC_F,   KC_G,    KC_LBRC, KC_MINS, KC_RBRC, KC_H,   KC_J,     KC_K,     KC_L,    KC_SCLN, KC_ENT    },
+  { LSFT_RIGHT, KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,    KC_QUOT, KC_UP,   KC_EQL,  KC_N,   KC_M,     KC_COMM,  KC_DOT,  KC_SLSH, RSFT_UP   },
+  { LCTL_LEFT,  KC_LALT, KC_LGUI, L2_LEFT, GUI_UP, GUI_SPC, KC_LEFT, KC_DOWN, KC_RGHT, L1_SPC, GUI_DOWN, L2_RIGHT, KC_RGUI, KC_RALT, RCTL_DOWN },
  },
 
- [_FN] = { /* FUNCTION */
-  { KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12   },
-  { WN_NEXT,  WN_PREV, _______, KC_GRV,  KC_LPRN, KC_RPRN, _______, _______, _______, KC_MINS, KC_PLUS, KC_BSLS, _______, _______, _______  },
-  { _______ , _______, _______, KC_TILD, KC_LCBR, KC_RCBR, _______, _______, _______, KC_DQUO, KC_QUOT, KC_PIPE, _______, _______, _______  },
-  { _______ , _______, _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______, KC_UNDS, KC_EQL,  _______, _______, _______, _______  },
-  { RGB_RMOD, RGB_MOD, RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET    },
+ [L1] = { /* FUNCTION */
+  { KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12  },
+  { WN_NEXT,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______ },
+  { WN_PREV,  KC_TILD, KC_EQL,  KC_QUOT, KC_DQUO, KC_MINS, _______, _______, _______, KC_PLUS, KC_UNDS, KC_BSLS, KC_PIPE, KC_COLN, _______ },
+  { _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ },
+  { RGB_RMOD, RGB_MOD, RGB_TOG, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET   },
  },
 
- [_TMUX] = { /* FUNCTION 2 */
-  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  },
+ [L2] = { /* FUNCTION 2 */
+  { _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  },
   { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, TX_PREV, _______  },
   { _______, _______, _______, _______, _______, _______, _______, _______, _______, TX_LEFT, TX_DOWN, TX_UP,   TX_RGHT, _______, _______  },
   { _______, _______, _______, TX_NEW,  _______, _______, _______, _______, _______, TX_NEXT, _______, _______, _______, _______, _______  },
