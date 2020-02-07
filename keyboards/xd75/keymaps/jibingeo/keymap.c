@@ -29,7 +29,12 @@
 #define SFT_UP      SFT_T(KC_UP)
 #define SFT_MINS    SFT_T(KC_MINS)
 #define SFT_QUOT    SFT_T(KC_QUOT)
+#define ALT_BSLS    ALT_T(KC_BSLS)
+#define ALT_TAB    ALT_T(KC_TAB)
 
+#define COPY        LCTL(KC_INS)
+#define PSTE        LSFT(KC_INS)
+#define FIND        LCTL(KC_F)
 
 // Macro keycode
 enum custom_keycodes {
@@ -40,25 +45,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L0] = LAYOUT_ortho_5x15( /* QWERTY */
     KC_GRV,   KC_1,    KC_2,    KC_3,     KC_4,    KC_5,    KC_MINS, KC_BSLS, KC_EQL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC,
-    KC_TAB,   KC_Q,    KC_W,    KC_E,     KC_R,    KC_T,    KC_LBRC, KC_QUOT, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSLS,
+    ALT_TAB,  KC_Q,    KC_W,    KC_E,     KC_R,    KC_T,    KC_LBRC, KC_QUOT, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     ALT_BSLS,
     CTL_ESC,  KC_A,    KC_S,    KC_D,     KC_F,    KC_G,    KC_HOME, KC_DEL,  KC_PGUP, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  CTL_ENT,
     SFT_QUOT, KC_Z,    KC_X,    KC_C,     KC_V,    KC_B,    KC_END,  KC_UP,   KC_PGDN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  SFT_MINS,
-    KC_LCTL,  KC_LGUI, KC_LALT, GUI_CTL,  GUI_UP,  SFT_SPC, KC_LEFT, KC_DOWN, KC_RGHT, KC_SPC,  L1_DOWN, KC_RALT, KC_RALT, KC_RGUI,  KC_RCTL
+    KC_LCTL,  KC_LGUI, KC_LALT, MO(L2),   GUI_UP,  SFT_SPC, KC_LEFT, KC_DOWN, KC_RGHT, KC_SPC,  L1_DOWN, MO(L2),  KC_RALT, KC_RGUI,  KC_RCTL
   ),
 
   [L1] = LAYOUT_ortho_5x15( /* FUNCTION */
-    _______,  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,   KC_F11,  _______, KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_VOLU,
-    _______,  _______, _______, KC_LBRC,  KC_RBRC, KC_QUOT, _______, _______, _______, KC_UNDS, KC_7,    KC_8,    KC_9,    KC_MUTE,  KC_VOLD,
-    _______,  _______, _______, KC_LCBR,  KC_RCBR, KC_DQUO, _______, _______, _______, KC_MINS, KC_4,    KC_5,    KC_6,    _______,  _______,
-    _______,  _______, _______, KC_LABK,  KC_RABK, KC_EQL,  _______, _______, _______, KC_PLUS, KC_1,    KC_2,    KC_3,    _______,  _______,
-    RGB_RMOD, RGB_MOD, RGB_TOG, _______,  _______, _______, _______, _______, _______, _______, KC_0,    KC_DOT,  _______, _______,  RESET
+    _______,  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,   KC_F11,  _______, KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+    _______,  _______, _______, KC_LBRC,  KC_RBRC, _______, _______, _______, _______, _______, KC_QUOT, KC_UNDS, _______, _______, _______,
+    _______,  _______, _______, KC_LCBR,  KC_RCBR, _______, _______, _______, _______, _______, KC_DQUO, KC_MINS, _______, _______, _______,
+    _______,  _______, _______, KC_LABK,  KC_RABK, _______, _______, _______, _______, _______, KC_EQL,  KC_PLUS, _______, _______, _______,
+    RGB_RMOD, RGB_MOD, RGB_TOG, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
   [L2] = LAYOUT_ortho_5x15( /* FUNCTION */
-    _______,  _______, _______, _______,  KC_F4,   KC_F5,   KC_F11,  _______, KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   _______,
-    _______,  _______, _______, KC_LBRC,  KC_RBRC, KC_QUOT, _______, _______, _______, KC_UNDS, KC_7,    KC_8,    KC_9,    _______,  _______,
-    _______,  _______, _______, KC_LCBR,  KC_RCBR, KC_DQUO, _______, _______, _______, KC_MINS, KC_4,    KC_5,    KC_6,    _______,  _______,
-    _______,  _______, _______, KC_LABK,  KC_RABK, KC_EQL,  _______, _______, _______, KC_PLUS, KC_1,    KC_2,    KC_3,    _______,  _______,
+    KC_POWER, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU,  KC_MPLY,
+    _______,  _______, _______, _______,  _______, _______, _______, _______, _______, _______, KC_7,    KC_8,    KC_9,    _______,  KC_MNXT,
+    _______,  _______, _______, _______,  FIND,    _______, _______, _______, _______, _______, KC_4,    KC_5,    KC_6,    _______,  KC_MPRV,
+    _______,  _______, _______, COPY,     PSTE,    _______, _______, _______, _______, _______, KC_1,    KC_2,    KC_3,    _______,  KC_MSTP,
     RGB_RMOD, RGB_MOD, RGB_TOG, _______,  _______, _______, _______, _______, _______, _______, KC_0,    KC_DOT,  _______, _______,  RESET
   ),
 };
