@@ -36,7 +36,7 @@
 #define ALT_TAB     ALT_T(KC_TAB)
 #define RCTL_QUOT   RCTL_T(KC_QUOT)
 #define RGUI_EQL    RGUI_T(KC_EQL)
-#define CTL_PLUS    LCTL_T(KC_PLUS)
+#define CTL_PLUS    CTL_T(KC_PPLS)
 
 
 // Linux shortcut
